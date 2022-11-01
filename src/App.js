@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import List from './List';
+import './common.scss'
+import { Link, Route, Routes } from 'react-router-dom';
+import Main from './Main';
+import Header from './Header';
+import Glist from './Glist';
+import All from './All';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const genreList = [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Family",
+        "Fantasy",
+        "History",
+        "Music",
+        "Musical",
+        "Mystery",
+        "Romance",
+    ]
+    return (
+        <div>
+
+            <Header>
+                <ul className='flex'>
+                    {
+                        genreList.map(it => {
+                            return (
+                                <li>
+                                    <Link to={it}>{it}</Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </Header>
+            <Routes>
+                <Route path="/" element={<Main limit={50} />} />
+                {
+                    genreList.map(it => {
+                        return (
+                            <Route path={it} element={<Glist genre={it} limit={20} />} />
+                        )
+                    })
+                }
+            </Routes>
+            <All />
+
+            <List genre='Drama' limit={20} />
+            <List genre='Action' limit={20} />
+            <List genre='Horror' limit={20} />
+        </div>
+    )
 }
 
-export default App;
+export default App
