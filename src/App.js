@@ -6,6 +6,7 @@ import Main from './Main';
 import Header from './Header';
 import Glist from './Glist';
 import All from './All';
+import Detail from './Detatil';
 
 const App = () => {
     const genreList = [
@@ -37,20 +38,25 @@ const App = () => {
                 </ul>
             </Header>
             <Routes>
-                <Route path="/" element={<Main limit={50} />} />
+                <Route path="/" element={<Main limit={50} />}>
+                    <Route path="/detail/:id" element={<Detail />} />
+                </Route>
                 {
                     genreList.map(it => {
                         return (
-                            <Route path={it} element={<Glist genre={it} limit={20} />} />
+                            <Route path={it} element={<Glist genre={it} limit={20} />}>
+                                <Route path={`/${it}/:id`} element={<Detail limit={50} />} />
+                            </Route>
                         )
                     })
                 }
-            </Routes>
-            <All />
 
-            <List genre='Drama' limit={20} />
-            <List genre='Action' limit={20} />
-            <List genre='Horror' limit={20} />
+            </Routes>
+
+
+            {/* <All /> */}
+
+
         </div>
     )
 }
