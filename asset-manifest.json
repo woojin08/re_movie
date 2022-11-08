@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/re_movie/static/css/main.23e678cd.css",
+    "main.js": "/re_movie/static/js/main.9054b31b.js",
+    "index.html": "/re_movie/index.html",
+    "main.23e678cd.css.map": "/re_movie/static/css/main.23e678cd.css.map",
+    "main.9054b31b.js.map": "/re_movie/static/js/main.9054b31b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23e678cd.css",
+    "static/js/main.9054b31b.js"
+  ]
+}
