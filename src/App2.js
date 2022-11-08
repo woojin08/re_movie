@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import List from './List';
 import './common.scss'
 import { Link, Route, Routes } from 'react-router-dom';
@@ -7,9 +7,9 @@ import Header from './Header';
 import Glist from './Glist';
 import All from './All';
 import Detail from './Detatil';
-import SearchResult from './SearchResult';
 
-const App = () => {
+
+const App2 = () => {
     const genreList = [
         "Action",
         "Adventure",
@@ -22,16 +22,18 @@ const App = () => {
         "Mystery",
         "Romance",
     ];
-    const [movie, setMovie] = useState([]);
+
+    const [search, setSearch] = useState('');
+
     return (
         <div>
 
             <Header>
                 <ul className='flex'>
                     {
-                        genreList.map((it, idx) => {
+                        genreList.map(it => {
                             return (
-                                <li key={idx}>
+                                <li>
                                     <Link to={it}>{it}</Link>
                                 </li>
                             )
@@ -44,21 +46,17 @@ const App = () => {
                     <Route path="/detail/:id" element={<Detail />} />
                 </Route>
                 {
-                    genreList.map((it, idx) => {
+                    genreList.map(it => {
                         return (
-                            <Route path={it} element={<Glist genre={it} limit={20} />} key={idx}>
+                            <Route path={it} element={<Glist genre={it} limit={20} />}>
                                 <Route path={`/${it}/:id`} element={<Detail limit={50} />} />
                             </Route>
                         )
                     })
                 }
 
-                <Route path="/search" element={<SearchResult limit={50} />}>
-                    <Route path="/search/:id" element={<Detail />} />
-                </Route>
-
             </Routes>
-            {/* <SearchResult /> */}
+
 
             {/* <All /> */}
 
@@ -67,4 +65,4 @@ const App = () => {
     )
 }
 
-export default App
+export default App2
